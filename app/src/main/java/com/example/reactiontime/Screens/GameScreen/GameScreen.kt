@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,49 +24,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.reactiontime.R
 import com.example.reactiontime.data.Game
 import kotlin.collections.forEach
 @Composable
 fun GameScreen() {
-    val games = remember {
-        listOf(
-            Game(
-                title = "Reaction Time",
-                description = "Test your reaction speed!",
-                image = R.drawable.ic_launcher_background,
-                route = "reaction_time"
-            ),
-            Game(
-                title = "Number Memory",
-                description = "Remember the sequence of numbers.",
-                image = R.drawable.ic_launcher_background,
-                route = "number_memory"
-            ),
-            Game(
-                title = "Aim Trainer",
-                description = "Improve your mouse accuracy.",
-                image = R.drawable.ic_launcher_background,
-                route = "aim_trainer"
-            ),
-            Game(
-                title = "Visual Memory",
-                description = "Test your visual recall.",
-                image = R.drawable.ic_launcher_background,
-                route = "visual_memory"
-            ),
-            Game(
-                title = "Chimp Test",
-                description = "Test your short-term memory",
-                image = R.drawable.ic_launcher_background,
-                route = "chimp_test"
-            ),
-        )
-    }
+    val viewModel : GamesScreenViewModel = viewModel()
+    val games = viewModel.games.collectAsState().value
+    GameList(games = games)
 }
 
 @Composable
-fun GameList(games: List<Game>,modifier: Modifier) {
+fun GameList(games: List<Game>) {
     Column(modifier = Modifier.padding(8.dp)) {
         games.forEach { game ->
             GameCard(

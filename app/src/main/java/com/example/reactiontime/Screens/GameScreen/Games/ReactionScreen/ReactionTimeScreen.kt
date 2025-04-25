@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.GameScreen.ReactionScreen
+package com.example.reactiontime.Screens.GameScreen.Games.ReactionScreen
 
 
 import androidx.compose.foundation.Image
@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.reactiontime.R
-import com.example.reactiontime.Screens.GameScreen.ReactionScreen.ReactionTimeViewModel
 import com.example.reactiontime.data.GameState
 import com.example.reactiontime.data.ReactionState
 

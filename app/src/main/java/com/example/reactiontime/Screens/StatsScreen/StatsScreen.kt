@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 
 @Composable
-fun ProfileScreen(){
+fun StatsScreen(){
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
         Text(text = "Profile Screen")
     }

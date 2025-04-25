@@ -14,11 +14,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 import com.example.reactiontime.data.BottomNavItem
 
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(navController: NavController) {
     val bottomNavItems = listOf(
         BottomNavItem.Games,
         BottomNavItem.Stats,
@@ -36,6 +37,18 @@ fun BottomNavigationBar() {
                 selected = selectedItem == item,
                 onClick = {
                     selectedItem = item
+                    navController.navigate(item.route) {
+                        // Avoid building up a large stack of destinations
+                        navController.graph.startDestinationRoute?.let { route ->
+                            popUpTo(route) {
+                                saveState = true
+                            }
+                        }
+                        // Avoid multiple copies of the same destination when re-selecting the same item
+                        launchSingleTop = true
+                        // Restore state when reselecting a previously selected item
+                        restoreState = true
+                    }
 
                 },
                 icon = {
@@ -55,8 +68,4 @@ fun BottomNavigationBar() {
         }
     }
 }
-@Preview
-@Composable
-fun BottomNavigationBarPreview() {
-    BottomNavigationBar()
-}
+

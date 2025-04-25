@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.GameScreen.ReactionScreen
+package com.example.reactiontime.Screens.GameScreen.Games.ReactionScreen
 
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
