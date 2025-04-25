@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens
+package com.example.reactiontime.Screens.GameScreen.ReactionScreen
 
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
@@ -29,7 +29,7 @@ class ReactionTimeViewModel : ViewModel() {
                     message = "Waiting for the green Color"
                 )
             }
-            delay(Random.nextLong(1000, 3000))
+            delay(Random.Default.nextLong(1000, 3000))
             _uiState.update {
                 it.copy(
                     gameState = GameState.Ready,
@@ -52,7 +52,7 @@ class ReactionTimeViewModel : ViewModel() {
                 _uiState.update {
                 it.copy(
                     gameState = GameState.TooSoon,
-                    backgroundColor = Color.Blue,
+                    backgroundColor = Color.Companion.Blue,
                     message = "Too Soon"
                 )
             }}
@@ -77,7 +77,7 @@ class ReactionTimeViewModel : ViewModel() {
             GameState.Result -> _uiState.update {
                 it.copy(
                     gameState = GameState.Idle,
-                    backgroundColor = Color.Gray,
+                    backgroundColor = Color.Companion.Gray,
                     message = "Start the Game"
                 )
             }
