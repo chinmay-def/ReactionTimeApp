@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,32 +24,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.reactiontime.R
+import androidx.navigation.NavController
 import com.example.reactiontime.data.Game
-import kotlin.collections.forEach
+
 @Composable
-fun GameScreen() {
-    val viewModel : GamesScreenViewModel = viewModel()
+fun GameScreen(navController: NavController) {
+    val viewModel: GamesScreenViewModel = viewModel()
     val games = viewModel.games.collectAsState().value
-    GameList(games = games)
+    GameList(
+        games = games,
+        navController
+    )
 }
 
 @Composable
-fun GameList(games: List<Game>) {
+fun GameList(games: List<Game>, navController: NavController) {
     Column(modifier = Modifier.padding(8.dp)) {
         games.forEach { game ->
             GameCard(
                 game = game,
+                navController
             )
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameCard(game: Game) {
+fun GameCard(game: Game, navController: NavController) {
     ElevatedCard(
         onClick = {
-            // here we will navigate to game screen
+            when (game.route) {
+                "reaction_time" -> navController.navigate("reaction_game")
+
+                else ->{
+                        navController.navigate("reaction_game")
+                }
+            }
         },
         modifier = Modifier
             .fillMaxWidth()

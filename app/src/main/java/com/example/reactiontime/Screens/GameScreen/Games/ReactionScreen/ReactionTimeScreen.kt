@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.reactiontime.R
 import com.example.reactiontime.data.GameState
 import com.example.reactiontime.data.ReactionState
@@ -43,7 +44,8 @@ import com.example.reactiontime.data.ReactionState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReactionTimeScreen(viewModel: ReactionTimeViewModel) {
+fun ReactionTimeScreen() {
+    val viewModel : ReactionTimeViewModel = viewModel()
     val uiState: ReactionState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
@@ -55,13 +57,11 @@ fun ReactionTimeScreen(viewModel: ReactionTimeViewModel) {
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                }, colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surfaceVariant // Softer color
                 )
             )
-        },
-        containerColor = MaterialTheme.colorScheme.background // Use Material theme background
+        }, containerColor = MaterialTheme.colorScheme.background ,// Use Material theme background
     ) { innerPadding ->
         ReactionTimeScreenContent(
             modifier = Modifier.padding(innerPadding),
@@ -108,8 +108,7 @@ fun ReactionTimeScreenContent(
                         if (uiState.backgroundColor != Color.Gray) {
                             onScreenTap()
                         }
-                    },
-                contentAlignment = Alignment.Center
+                    }, contentAlignment = Alignment.Center
             ) {
                 // Main Message (Inside the Circle)
                 Text(
@@ -146,7 +145,8 @@ fun ReactionTimeScreenContent(
 
             // Start Button
             if (uiState.gameState == GameState.Idle) {
-                Button(onClick = { onStartTap() },
+                Button(
+                    onClick = { onStartTap() },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)

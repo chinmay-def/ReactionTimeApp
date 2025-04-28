@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens
+package com.example.reactiontime.navigation
 
 
 import androidx.compose.foundation.layout.padding
@@ -14,13 +14,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.reactiontime.Screens.GameScreen.GameScreen
 import com.example.reactiontime.Screens.ProfileScreen.ProfileScreen
 import com.example.reactiontime.Screens.SettingsScreen.SettingsScreen
 import com.example.reactiontime.Screens.StatsScreen.StatsScreen
 import com.example.reactiontime.data.BottomNavItem
 
 
+sealed class GameListScreen(val route: String) {
+        object ReactionGame: GameListScreen("reaction_game")
+        object NumberMemory: GameListScreen("number_memory")
+        object AimTrainer: GameListScreen("aim_trainer")
+        object VisualMemory: GameListScreen("visual_memory")
+        object ChimpTest: GameListScreen("chimp_test")
+}
 @Composable
 fun MainScreenWithNavigation() {
     val navController = rememberNavController()
@@ -36,7 +42,7 @@ fun MainScreenWithNavigation() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Games.route) {
-                GameScreen()
+               GameNavGraph()
             }
             composable(BottomNavItem.Stats.route) {
                 StatsScreen()
@@ -45,10 +51,8 @@ fun MainScreenWithNavigation() {
                 ProfileScreen()
             }
             composable(BottomNavItem.Settings.route) {
-                SettingsScreen()
-
+                SettingsScreen(navController)
             }
-
 
         }
     }
