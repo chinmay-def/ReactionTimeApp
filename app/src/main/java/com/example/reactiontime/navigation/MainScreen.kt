@@ -18,6 +18,8 @@ import com.example.reactiontime.Screens.ProfileScreen.ProfileScreen
 import com.example.reactiontime.Screens.SettingsScreen.SettingsScreen
 import com.example.reactiontime.Screens.StatsScreen.StatsScreen
 import com.example.reactiontime.data.BottomNavItem
+import com.example.reactiontime.navigation.Compasbles.BasicCenterAlignedTopAppBar
+import com.example.reactiontime.navigation.Compasbles.BottomNavigationBar
 
 
 sealed class GameListScreen(val route: String) {
@@ -51,26 +53,10 @@ fun MainScreenWithNavigation() {
                 ProfileScreen()
             }
             composable(BottomNavItem.Settings.route) {
-                SettingsScreen(navController)
+                SettingsScreen()
             }
 
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BasicCenterAlignedTopAppBar(title: String) {
-    CenterAlignedTopAppBar(
-        title = {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant // Softer background color
-        )
-    )
-}
