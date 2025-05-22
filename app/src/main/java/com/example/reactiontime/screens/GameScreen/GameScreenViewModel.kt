@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.GameScreen
+package com.example.reactiontime.screens.GameScreen
 
 import androidx.lifecycle.ViewModel
 import com.example.reactiontime.R

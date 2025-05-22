@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.GameScreen
+package com.example.reactiontime.screens.GameScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.reactiontime.data.Game
+import com.example.reactiontime.navigation.GameListScreen
 
 @Composable
 fun GameScreen(navController: NavController) {
@@ -55,10 +56,10 @@ fun GameCard(game: Game, navController: NavController) {
     ElevatedCard(
         onClick = {
             when (game.route) {
-                "reaction_time" -> navController.navigate("reaction_game")
+                "reaction_time" -> navController.navigate(GameListScreen.ReactionGame.route)
 
                 else ->{
-                        navController.navigate("reaction_game")
+                        navController.navigate(GameListScreen.ReactionGame.route)
                 }
             }
         },

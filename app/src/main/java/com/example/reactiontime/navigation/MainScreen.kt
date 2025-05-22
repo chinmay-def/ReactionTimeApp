@@ -2,24 +2,20 @@ package com.example.reactiontime.navigation
 
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.reactiontime.Screens.ProfileScreen.ProfileScreen
-import com.example.reactiontime.Screens.SettingsScreen.SettingsScreen
-import com.example.reactiontime.Screens.StatsScreen.StatsScreen
+import com.example.reactiontime.screens.ProfileScreen.ProfileScreen
+import com.example.reactiontime.screens.SettingsScreen.SettingsScreen
+import com.example.reactiontime.screens.StatsScreen.StatsScreen
 import com.example.reactiontime.data.BottomNavItem
-import com.example.reactiontime.navigation.Compasbles.BasicCenterAlignedTopAppBar
-import com.example.reactiontime.navigation.Compasbles.BottomNavigationBar
+import com.example.reactiontime.navigation.composable.BasicCenterAlignedTopAppBar
+import com.example.reactiontime.navigation.composable.BottomNavigationBar
+import com.example.reactiontime.screens.GameScreen.GameScreen
+import com.example.reactiontime.screens.GameScreen.Games.ReactionScreen.ReactionTimeScreen
 
 
 sealed class GameListScreen(val route: String) {
@@ -44,7 +40,7 @@ fun MainScreenWithNavigation() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Games.route) {
-               GameNavGraph()
+                GameScreen(navController)
             }
             composable(BottomNavItem.Stats.route) {
                 StatsScreen()
@@ -54,6 +50,9 @@ fun MainScreenWithNavigation() {
             }
             composable(BottomNavItem.Settings.route) {
                 SettingsScreen()
+            }
+            composable(GameListScreen.ReactionGame.route) {
+                ReactionTimeScreen()
             }
 
         }

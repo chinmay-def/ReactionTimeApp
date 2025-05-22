@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.GameScreen.Games.ReactionScreen
+package com.example.reactiontime.screens.GameScreen.Games.ReactionScreen
 
 
 import androidx.compose.foundation.Image

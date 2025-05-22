@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.SettingsScreen
+package com.example.reactiontime.screens.SettingsScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

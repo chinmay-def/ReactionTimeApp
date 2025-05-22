@@ -14,6 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ReactionTimeTheme {
+                //This is the main screen of Human benchmark app
                 MainScreenWithNavigation()
             }
         }

@@ -1,4 +1,4 @@
-package com.example.reactiontime.Screens.StatsScreen
+package com.example.reactiontime.screens.ProfileScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 
 @Composable
-fun StatsScreen(){
+fun ProfileScreen(){
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
         Text(text = "Profile Screen")
     }

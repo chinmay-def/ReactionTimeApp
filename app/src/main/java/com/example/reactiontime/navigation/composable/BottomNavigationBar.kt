@@ -1,4 +1,4 @@
-package com.example.reactiontime.navigation.Compasbles
+package com.example.reactiontime.navigation.composable
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
